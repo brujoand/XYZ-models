@@ -54,7 +54,7 @@ function generateYAttachement() {
   const rightScrewHole = cylinder({radius: adxlScrewRadius, height: adxlScrewHeight, center: [-adxlScrewWidthOffset,adxlScrewDepthOffset,xAttachementHeight+(adxlScrewHeight/2)+yAttachementThickness], segments: 12})
 
   const yAttacehment = subtract(yAttachementShell, yAttachementHole)
-  const adxlGutter = cuboid({size: [adxlGutterWidth, adxlGutterDepth, adxlGutterHeight], center: [0,3,(xAttachementHeight+yAttachementHeight)-adxlGutterHeight/2 ]})
+  const adxlGutter = cuboid({size: [adxlGutterWidth, adxlGutterDepth, adxlGutterHeight], center: [0,2.7,(xAttachementHeight+yAttachementHeight)-adxlGutterHeight/2 ]})
 
   return subtract(subtract(subtract(yAttacehment, leftScrewHole), rightScrewHole), adxlGutter)
 
