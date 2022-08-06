@@ -37,7 +37,7 @@ function generateRim() {
 }
 
 function generateTooth() {
-  const toothCircle = cylinder({radius: toothRadius, height: toothThickness, center: [toothPositionX,0,toothThickness/2], segments: 24})
+  const toothCircle = cylinder({radius: toothRadius, height: toothThickness, center: [toothPositionX+2,0,toothThickness/2], segments: 24})
   const toothConnector = cuboid({size: [toothConnectorLength, toothRadius * 2, toothThickness], center: [toothConnectorPositionX,0,toothThickness/2]})
 
   const toothNutClearingHole = cylinder({radius: nutClearingRadius, height: toothThickness/2, center: [toothPositionX,0,toothThickness/4], segments: 12})
