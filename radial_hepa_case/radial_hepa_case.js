@@ -11,29 +11,30 @@ const plate_width=135
 const plate_depth=120
 const plate_height=3
 
-const screw_brim_width=20
+const screw_brim_width=10
 
 function hex_plate(plate) {
   const hex_hole = cylinder({radius: hex_radius - (grill_thickness/2), height: plate_height, segments: 6})
   var hexer = plate
-  const hex_width = plate_width - screw_brim_width
-  const hex_depth = plate_depth - screw_brim_depth
-  for (let i = 0; i < plate_depth; i = i + 8 + (hex_radius*2)) {
+  const hex_width = plate_width - screw_brim_width - (hex_radius *2)
+  const hex_depth = plate_depth - screw_brim_width - (hex_radius *2)
+
+  for (let i = -(hex_width/2); i < hex_width/2; i = i + (0.8*hex_radius) + (hex_radius*2)) {
     var line_number=0
-    for (let y = 0; y < hex_depth; y = y + (hex_radius) - 2) {
+    for (let y = -(hex_depth/2); y < hex_depth/2; y = y + (hex_radius) - (0.2 * hex_radius)) {
       if (line_number % 2 === 0){
-        offset=hex_radius + 4 + (screw_brim_width/2)
+        offset=hex_radius + (0.4 * hex_radius)
       } else {
-        offset=(screw_brim_width/2)
+        offset=0
       }
-      const hex = center({relativeTo: [i-(plate_width/2)-offset, y-(plate_depth/2)-hex_radius, plate_height/2]}, hex_hole)
+      const hex = center({relativeTo: [i+offset, y, plate_height/2]}, hex_hole)
       hexer = subtract(hexer, hex)
       line_number++
     }
   }
-  const hex_placeholder = cuboid({size: [plate_width - screw_brim_width, plate_depth - screw_brim_width, plate_height], center: [0,0,plate_height/2]})
 
-  return union(subtract(plate, hex_placeholder), hexer)
+  // return subtract(plate, hexer)
+  return hexer
 }
 
 
