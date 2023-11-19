@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@jscad/regl-renderer": "^2.6.5",
+    "jscad": "^1.1.0",
+    "nodejs": "^0.0.0"
+  },
+  "devDependencies": {
+    "@jscad/cli": "^2.2.25"
+  }
+}

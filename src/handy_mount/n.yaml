@@ -1,0 +1,66 @@
+piVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  annotations:
+    reconcile.fluxcd.io/requestedAt: "2022-11-01T09:12:05.968285+01:00"
+  creationTimestamp: "2022-03-15T09:24:55Z"
+  finalizers:
+  - finalizers.fluxcd.io
+  generation: 1
+  labels:
+    kustomize.toolkit.fluxcd.io/name: delivery
+    kustomize.toolkit.fluxcd.io/namespace: flux-system
+  name: delivery
+  namespace: delivery
+  resourceVersion: "737557245"
+  uid: a4cb0bf8-3f01-40cd-8628-c4bcc315e84e
+spec:
+  force: false
+  interval: 10m0s
+  path: ./deploy/prod
+  prune: true
+  serviceAccountName: delivery-flux
+  sourceRef:
+    kind: GitRepository
+    name: delivery-git
+    namespace: delivery
+  validation: client
+status:
+  conditions:
+  - lastTransitionTime: "2023-03-17T09:32:22Z"
+    message: |-
+      kustomize build failed: map[string]interface {}(nil): yaml: unmarshal errors:
+        line 177: mapping key "enabled" already defined at line 174
+    reason: BuildFailed
+    status: "False"
+    type: Ready
+  inventory:
+    entries:
+    - id: delivery_delivery-buildfarm-netrc__Secret
+      v: v1
+    - id: delivery_delivery-buildfarm-properties__Secret
+      v: v1
+    - id: delivery_delivery-buildfarm-redis__Secret
+      v: v1
+    - id: delivery_delivery-git-smith-secret__Secret
+      v: v1
+    - id: delivery_buildfarm-postgresql_helm.toolkit.fluxcd.io_HelmRelease
+      v: v2beta1
+    - id: delivery_buildfarm-redis_helm.toolkit.fluxcd.io_HelmRelease
+      v: v2beta1
+    - id: delivery_buildfarm-server_helm.toolkit.fluxcd.io_HelmRelease
+      v: v2beta1
+    - id: delivery_buildfarm-worker_helm.toolkit.fluxcd.io_HelmRelease
+      v: v2beta1
+    - id: delivery_git-smith_helm.toolkit.fluxcd.io_HelmRelease
+      v: v2beta1
+    - id: delivery_gitlab-exporter_helm.toolkit.fluxcd.io_HelmRelease
+      v: v2beta1
+    - id: delivery_gitlab-exporter_monitoring.coreos.com_ServiceMonitor
+      v: v1
+    - id: delivery_worker-restrict-egress_networking.k8s.io_NetworkPolicy
+      v: v1
+  lastAppliedRevision: master/19b0d420188d1576cda0802fd28ce11bde479b6f
+  lastAttemptedRevision: master/c84f9df948fee0c3d8ee8ac8946ea53523ca655c
+  lastHandledReconcileAt: "2022-11-01T09:12:05.968285+01:00"
+  observedGeneration: 1
